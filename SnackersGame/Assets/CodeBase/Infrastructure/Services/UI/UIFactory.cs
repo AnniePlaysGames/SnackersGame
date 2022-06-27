@@ -6,7 +6,6 @@ namespace CodeBase.Infrastructure.Services.UI
 {
     public class UIFactory : IUIFactory
     {
-        private const string PauseMenuPath = "UI/PauseMenu";
         private readonly IAssetProvider _assets;
         private readonly RectTransform _uiRoot;
 
@@ -14,13 +13,6 @@ namespace CodeBase.Infrastructure.Services.UI
         {
             _assets = assets;
             _uiRoot = uiRoot;
-        }
-
-        public PauseWindow CreatePauseWindow()
-        {
-            GameObject pauseWindow = _assets.Instantiate(PauseMenuPath);
-            pauseWindow.transform.SetParent(_uiRoot, false);
-            return pauseWindow.GetComponent<PauseWindow>();
         }
     }
 }

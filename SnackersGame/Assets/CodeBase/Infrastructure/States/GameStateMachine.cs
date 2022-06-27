@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Input;
+using CodeBase.Infrastructure.Services.Spawn;
 using CodeBase.Infrastructure.States.Interfaces;
 using UnityEngine;
 
@@ -18,9 +19,8 @@ namespace CodeBase.Infrastructure.States
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, serviceLocator, uiRoot),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain),
-                [typeof(GameLoopState)] = new GameLoopState(this),
-                [typeof(PauseMenuState)] = new PauseMenuState(this, serviceLocator.Single<IInputService>(), serviceLocator.Single<IWindowService>())
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, serviceLocator.Single<ISpawnService>()),
+                [typeof(GameLoopState)] = new GameLoopState(serviceLocator.Single<IInputService>()),
             };
         }
             

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Services.Factories;
 using UnityEngine;
 
 namespace CodeBase.Components
@@ -7,18 +9,17 @@ namespace CodeBase.Components
     {
         [SerializeField] private int amountToPool;
         private List<GameObject> _pooledObjects;
+        private IUnitFactory _unitFactory;
 
-        private void Awake()
-        {
-
-        }
+        private void Awake() 
+            => _unitFactory = ServiceLocator.Container.Single<IUnitFactory>();
 
         private void InitPool(GameObject obj)
         {
             _pooledObjects = new List<GameObject>();
             for (int i = 0; i < amountToPool; i++)
             {
-                GameObject pooledWeapon =;
+                GameObject pooledWeapon = _unitFactory.CreateUnit();
                 pooledWeapon.SetActive(false);
                 _pooledObjects.Add(pooledWeapon);
             }

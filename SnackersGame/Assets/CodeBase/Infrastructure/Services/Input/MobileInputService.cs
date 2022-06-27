@@ -1,40 +1,24 @@
 using System;
+using SimpleInputNamespace;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace CodeBase.Infrastructure.Services.Input
 {
     public class MobileInputService : IInputService
     {
-        private DefaultActions.GameLoopActions _inputActions;
-        private Camera _mainCamera;
-        
-        public event Action<Vector2> OnClickPosition;
-        public event Action<Ray> OnClickRay;
+        private const string Horizontal = "Horizontal";
+        private const string Vertical = "Vertical";
+        private readonly Joystick _joystick;
 
-        public MobileInputService()
-        {
-            _inputActions = new DefaultActions().GameLoop;
-            _inputActions.Click.performed += _ => OnCLickInvoke();
-            EnableInput();
-        }
+        public Vector3 HorizontalStickPosition => new Vector3(SimpleInput.GetAxis(Vertical),0,0);
+
+        public MobileInputService(Joystick joystick) 
+            => _joystick = joystick;
 
         public void EnableInput()
-            => _inputActions.Enable();
+            => _joystick.enabled = true;
 
         public void DisableInput()
-            => _inputActions.Disable();
-
-        private void OnCLickInvoke()
-        {
-            _mainCamera ??= Camera.main;
-            Vector2 screenPosition = _inputActions.Position.ReadValue<Vector2>();
-            
-            Vector3 worldPosition = _mainCamera.ScreenToWorldPoint(screenPosition);
-            OnClickPosition?.Invoke(worldPosition);
-            
-            Ray clickRay = _mainCamera.ScreenPointToRay(screenPosition);
-            OnClickRay?.Invoke(clickRay);
-        }
+            => _joystick.enabled = false;
     }
 }

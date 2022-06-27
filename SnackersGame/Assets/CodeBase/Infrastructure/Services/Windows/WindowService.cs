@@ -5,7 +5,7 @@ namespace CodeBase.Infrastructure.Services.Windows
     public class WindowService : IWindowService
     {
         private readonly IUIFactory _uiFactory;
-        
+
         public PauseWindow PauseWindow { get; private set; }
 
         public WindowService(IUIFactory uiFactory)
@@ -18,9 +18,6 @@ namespace CodeBase.Infrastructure.Services.Windows
             switch (windowId)
             {
                 case WindowId.Unknown:
-                    break;
-                case WindowId.Pause:
-                    PauseWindow = _uiFactory.CreatePauseWindow();
                     break;
             }
         }
