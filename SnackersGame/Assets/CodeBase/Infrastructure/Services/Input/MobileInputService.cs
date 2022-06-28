@@ -10,7 +10,7 @@ namespace CodeBase.Infrastructure.Services.Input
         private const string Vertical = "Vertical";
         private readonly Joystick _joystick;
 
-        public Vector3 HorizontalStickPosition => new Vector3(SimpleInput.GetAxis(Vertical),0,0);
+        public Vector3 HorizontalStickPosition => new Vector3(SimpleInput.GetAxis(Horizontal),0,0);
 
         public MobileInputService(Joystick joystick) 
             => _joystick = joystick;

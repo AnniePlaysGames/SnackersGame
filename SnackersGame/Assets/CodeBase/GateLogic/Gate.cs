@@ -1,29 +1,41 @@
 using System;
-using TMPro;
+using System.Text;
+using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Services.Spawn;
 using UnityEngine;
 
 namespace CodeBase.Components.GateLogic
 {
     public class Gate : MonoBehaviour
     {
-        public event Action<Gate> OnPlayerEnter;
-        
+        public event Action<Gate> OnUnitEnter;
+        public GateType GateType => _type;
+        public int Value => _value;
+        public MathOperation Operation => _operation;
+
+        [SerializeField] private GateType _type;
         [SerializeField] private int _value;
         [SerializeField] private MathOperation _operation;
-        [SerializeField] private string _text;
-        [SerializeField] private MeshRenderer _meshRenderer;
+        private ISpawnService _spawnService;
+
+        private void Awake() 
+            => _spawnService = ServiceLocator.Container.Single<ISpawnService>();
+
+        private void OnDisable() 
+            => GetComponent<BoxCollider>().enabled = false;
+
         private void OnTriggerEnter(Collider other)
         {
-            Player player = other.GetComponent<Player>();
-            if (player != null)
+            Movable movable = other.GetComponent<Movable>();
+            if (movable != null)
             {
-                OnPlayerEnter?.Invoke(this);
-                player.ChangeUnitsCount(_operation, _value);
+                OnUnitEnter?.Invoke(this);
+                _spawnService.Player.ChangeUnitsCount(_operation, _value);
                 Hide();
             }
         }
 
-        private void Hide() 
-            => _meshRenderer.enabled = false;
+        private void Hide()
+            => gameObject.SetActive(false);
     }
 }

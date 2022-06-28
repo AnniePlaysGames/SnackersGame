@@ -1,37 +1,41 @@
 using System;
+using System.Collections.Generic;
 using CodeBase.Components.GateLogic;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Input;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CodeBase.Components
 {
     public class Player : MonoBehaviour
     {
-        private IInputService _inputService;
-        private PhysicsMovement _movement;
-        private int _unitsCount = 1;
-        
+        private const int InitialUnitsCount = 1;
+        private Queue<GameObject> _unitsQueue = new Queue<GameObject>();
+        private int _unitsCount = 0;
+        private float SpawnOffsetCoefficient => Random.Range(-0.2f, 0.2f);
+
         public event Action OnUnitsOver;
+        public ObjectPool ObjectPool { get; set; }
         public Transform LookPoint { get; private set; }
 
         private void Awake()
         {
-            _inputService = ServiceLocator.Container.Single<IInputService>();
-            _movement = GetComponent<PhysicsMovement>();
             LookPoint = GetComponentInChildren<CameraLookPoint>().transform;
         }
 
-        private void Update()
+        private void Start()
         {
-            _movement.Move(_inputService.HorizontalStickPosition);
+            ChangeUnitsCount(MathOperation.Addition, InitialUnitsCount);
         }
 
         public void ChangeUnitsCount(MathOperation operation, int value)
         {
+            int oldCount = _unitsCount;
             ApplyOperation(operation, value);
+            int newCount = _unitsCount;
             CheckForUnitsOver();
-            Debug.Log("Units Count:" + _unitsCount);
+            UpdateUnits(newCount - oldCount);
         }
 
         private void ApplyOperation(MathOperation operation, int value)
@@ -52,11 +56,38 @@ namespace CodeBase.Components
                     break;
             }
         }
+
         private void CheckForUnitsOver()
         {
             if (_unitsCount <= 0)
             {
                 OnUnitsOver?.Invoke();
+            }
+        }
+
+        private void UpdateUnits(int difference)
+        {
+            if (difference > 0)
+            {
+                for (int i = 0; i < difference; i++)
+                {
+                    GameObject unit = ObjectPool.GetPooledObject();
+                    unit.transform.SetParent(gameObject.transform, false);
+                    Vector3 unitPosition = unit.transform.position;
+                    unit.transform.position = new Vector3(unitPosition.x + SpawnOffsetCoefficient, unitPosition.y,
+                        unitPosition.z + SpawnOffsetCoefficient);
+                    unit.SetActive(true);
+                    _unitsQueue.Enqueue(unit);
+                }
+            }
+
+            else if (difference < 0)
+            {
+                for (int i = 0; i > difference; i--)
+                {
+                    GameObject unit = _unitsQueue.Dequeue();
+                    unit.SetActive(false);
+                }
             }
         }
     }

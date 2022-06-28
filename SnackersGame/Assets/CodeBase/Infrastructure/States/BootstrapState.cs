@@ -1,3 +1,4 @@
+using CodeBase.Components;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.AssetManagment;
 using CodeBase.Infrastructure.Services.Factories;
@@ -20,13 +21,15 @@ namespace CodeBase.Infrastructure.States
         private readonly SceneLoader _sceneLoader;
         private readonly ServiceLocator _services;
         private readonly RectTransform _uiRoot;
+        private readonly ObjectPool _objectPool;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, ServiceLocator services, RectTransform uiRoot)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, ServiceLocator services, RectTransform uiRoot, ObjectPool objectPool)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _services = services;
             _uiRoot = uiRoot;
+            _objectPool = objectPool;
 
             RegisterServices();
         }
@@ -44,11 +47,11 @@ namespace CodeBase.Infrastructure.States
         private void RegisterServices()
         {
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
-            _services.RegisterSingle<ISpawnService>(new SpawnService(_services.Single<IAssetProvider>()));
+            _services.RegisterSingle<ISpawnService>(new SpawnService(_services.Single<IAssetProvider>(), _objectPool));
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProvider>(), _uiRoot));
             _services.RegisterSingle<IInputService>(new MobileInputService(_uiRoot.GetComponentInChildren<Joystick>()));
             _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
-            _services.RegisterSingle<IUnitFactory>(new UnitFactory(_services.Single<IAssetProvider>()));
+            _services.RegisterSingle<IUnitFactory>(new UnitFactory(_services.Single<IAssetProvider>(), _services.Single<ISpawnService>()));
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CodeBase.Components;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.Spawn;
@@ -14,12 +15,12 @@ namespace CodeBase.Infrastructure.States
         private IExitableState _activeState;
 
         public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, ServiceLocator serviceLocator,
-            RectTransform uiRoot)
+            RectTransform uiRoot, ObjectPool objectPool)
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, serviceLocator, uiRoot),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, serviceLocator.Single<ISpawnService>()),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, serviceLocator, uiRoot, objectPool),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, serviceLocator.Single<ISpawnService>(), objectPool),
                 [typeof(GameLoopState)] = new GameLoopState(serviceLocator.Single<IInputService>()),
             };
         }

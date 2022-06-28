@@ -1,3 +1,4 @@
+using CodeBase.Components;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.States;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace CodeBase.Infrastructure
     {
         public readonly GameStateMachine StateMachine;
 
-        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, RectTransform uiRoot) 
-            => StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, ServiceLocator.Container, uiRoot);
+        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, RectTransform uiRoot, ObjectPool objectPool) 
+            => StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, ServiceLocator.Container, uiRoot, objectPool);
     }
 }

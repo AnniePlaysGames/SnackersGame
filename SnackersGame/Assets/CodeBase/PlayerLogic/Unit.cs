@@ -1,6 +1,9 @@
+using UnityEngine;
+
 namespace CodeBase.Components
 {
-    public class Unit
+    [RequireComponent(typeof(Movable))]
+    public class Unit : MonoBehaviour
     {
         
     }

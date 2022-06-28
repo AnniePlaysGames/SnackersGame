@@ -9,23 +9,20 @@ namespace CodeBase.Components
     {
         [SerializeField] private int amountToPool;
         private List<GameObject> _pooledObjects;
-        private IUnitFactory _unitFactory;
 
-        private void Awake() 
-            => _unitFactory = ServiceLocator.Container.Single<IUnitFactory>();
-
-        private void InitPool(GameObject obj)
+        public void InitPool()
         {
+            IUnitFactory unitFactory = ServiceLocator.Container.Single<IUnitFactory>();
             _pooledObjects = new List<GameObject>();
             for (int i = 0; i < amountToPool; i++)
             {
-                GameObject pooledWeapon = _unitFactory.CreateUnit();
-                pooledWeapon.SetActive(false);
-                _pooledObjects.Add(pooledWeapon);
+                GameObject pooledObject = unitFactory.CreateUnit();
+                pooledObject.SetActive(false);
+                _pooledObjects.Add(pooledObject);
             }
         }
 
-        public GameObject GetPooledWeapon()
+        public GameObject GetPooledObject()
         {
             for(int i = 0; i < amountToPool; i++)
             {

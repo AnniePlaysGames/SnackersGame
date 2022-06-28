@@ -10,7 +10,7 @@ namespace CodeBase.Components.GateLogic
         {
             foreach (Gate gate in _groupedGates)
             {
-                gate.OnPlayerEnter += LockOtherGates;
+                gate.OnUnitEnter += LockOtherGates;
             }
         }
 
@@ -18,7 +18,7 @@ namespace CodeBase.Components.GateLogic
         {
             foreach (Gate gate in _groupedGates)
             {
-                gate.OnPlayerEnter -= LockOtherGates;
+                gate.OnUnitEnter -= LockOtherGates;
             }
         }
 

@@ -1,4 +1,5 @@
 using System;
+using CodeBase.Components;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Spawn;
 using CodeBase.Infrastructure.States.Interfaces;
@@ -12,13 +13,15 @@ namespace CodeBase.Infrastructure.States
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _curtain;
         private readonly ISpawnService _spawnService;
+        private readonly ObjectPool _objectPool;
 
-        public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, ISpawnService spawnService)
+        public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, ISpawnService spawnService, ObjectPool objectPool)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _curtain = curtain;
             _spawnService = spawnService;
+            _objectPool = objectPool;
         }
 
         public void Enter(string sceneName)
@@ -31,7 +34,8 @@ namespace CodeBase.Infrastructure.States
         {
             _spawnService.SpawnPlayer();
             EnableCameraFollow();
-            
+            _objectPool.InitPool();
+
             _gameStateMachine.Enter<GameLoopState>();
         }
 
