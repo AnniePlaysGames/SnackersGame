@@ -8,6 +8,9 @@ namespace CodeBase.Infrastructure.Services.Spawn
     {
         private const string SpawnPointTag = "SpawnPoint";
         private const string PlayerPrefabPath = "Spawn/Player";
+        private const string UnitsMagnetPrefabPath = "Spawn/UnitsMagnet";
+        
+        
         private readonly IAssetProvider _assetProvider;
         private readonly ObjectPool _objectPool;
 
@@ -21,9 +24,25 @@ namespace CodeBase.Infrastructure.Services.Spawn
 
         public void SpawnPlayer()
         {
+            InitPlayer();
+            InitUnitsMagnet();
+            AttachObjectPool();
+        }
+
+        private void InitPlayer()
+        {
             Transform spawnPoint = GameObject.FindWithTag(SpawnPointTag).transform;
             Player = _assetProvider.Instantiate(PlayerPrefabPath, spawnPoint.position).GetComponent<Player>();
-            Player.ObjectPool = _objectPool;
         }
+
+        private void InitUnitsMagnet()
+        {
+            GameObject magnet = _assetProvider.Instantiate(UnitsMagnetPrefabPath, Player.transform.position);
+            Player.UnitsMagnetPoint = magnet.transform;
+            magnet.GetComponent<HardFollow>().SetTarget(Player.transform);
+        }
+
+        private void AttachObjectPool() 
+            => Player.ObjectPool = _objectPool;
     }
 }

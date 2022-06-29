@@ -20,7 +20,7 @@ namespace CodeBase.Infrastructure.Services.Factories
         public GameObject CreateUnit()
         {
             GameObject unit = _assetProvider.Instantiate(UnitPrefabPath);
-            unit.GetComponent<GroupAroundTargetTransform>().SetTarget(_spawnService.Player.transform);
+            unit.GetComponent<GroupAroundTarget>().SetTarget(_spawnService.Player.transform);
             return unit;
         }
     }

@@ -720,7 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ae8f0280134370b8c6a052dd75ceee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountToPool: 30
+  _amountToPool: 200
 --- !u!4 &2014286725
 Transform:
   m_ObjectHideFlags: 0

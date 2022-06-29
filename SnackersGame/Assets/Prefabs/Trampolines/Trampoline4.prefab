@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6660502384098856803}
   - component: {fileID: 315827998034964622}
   - component: {fileID: 7695143760634281381}
+  - component: {fileID: 942241019516131009}
   m_Layer: 0
   m_Name: Trampoline4
   m_TagString: Untagged
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &942241019516131009
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149996620594470966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6799649742159098738, guid: 94ee0582bac8bf64db47e4364fc90106, type: 3}

@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Components.GateLogic;
-using CodeBase.Infrastructure.Services;
-using CodeBase.Infrastructure.Services.Input;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,24 +8,21 @@ namespace CodeBase.Components
 {
     public class Player : MonoBehaviour
     {
-        private const int InitialUnitsCount = 1;
-        private Queue<GameObject> _unitsQueue = new Queue<GameObject>();
+        [SerializeField] private int _initialUnitsCount = 1;
+        private List<Unit> _unitList = new List<Unit>();
         private int _unitsCount = 0;
         private float SpawnOffsetCoefficient => Random.Range(-0.2f, 0.2f);
 
+        public Transform LookPoint { get; private set; }
         public event Action OnUnitsOver;
         public ObjectPool ObjectPool { get; set; }
-        public Transform LookPoint { get; private set; }
+        public Transform UnitsMagnetPoint { get; set; }
 
-        private void Awake()
-        {
-            LookPoint = GetComponentInChildren<CameraLookPoint>().transform;
-        }
+        private void Awake() 
+            => LookPoint = GetComponentInChildren<CameraLookPoint>().transform;
 
-        private void Start()
-        {
-            ChangeUnitsCount(MathOperation.Addition, InitialUnitsCount);
-        }
+        private void Start() 
+            => ChangeUnitsCount(MathOperation.Addition, _initialUnitsCount);
 
         public void ChangeUnitsCount(MathOperation operation, int value)
         {
@@ -36,6 +31,14 @@ namespace CodeBase.Components
             int newCount = _unitsCount;
             CheckForUnitsOver();
             UpdateUnits(newCount - oldCount);
+        }
+
+        public void DeleteUnit(Unit unit)
+        {
+            ApplyOperation(MathOperation.Subtraction, 1);
+            CheckForUnitsOver();
+            unit.gameObject.SetActive(false);
+            _unitList.Remove(unit);
         }
 
         private void ApplyOperation(MathOperation operation, int value)
@@ -71,24 +74,24 @@ namespace CodeBase.Components
             {
                 for (int i = 0; i < difference; i++)
                 {
-                    GameObject unit = ObjectPool.GetPooledObject();
-                    unit.transform.SetParent(gameObject.transform, false);
-                    Vector3 unitPosition = unit.transform.position;
-                    unit.transform.position = new Vector3(unitPosition.x + SpawnOffsetCoefficient, unitPosition.y,
-                        unitPosition.z + SpawnOffsetCoefficient);
-                    unit.SetActive(true);
-                    _unitsQueue.Enqueue(unit);
+                    GameObject unitObject = ObjectPool.GetPooledObject();
+                    unitObject.transform.position = new Vector3(transform.position.x + SpawnOffsetCoefficient, transform.position.y,
+                        transform.position.z + SpawnOffsetCoefficient);
+                    unitObject.SetActive(true);
+                    _unitList.Add(unitObject.GetComponent<Unit>());
                 }
             }
 
             else if (difference < 0)
             {
-                for (int i = 0; i > difference; i--)
+                int countToDeactivate = Math.Abs(difference);
+                for (int i = 0; i < countToDeactivate; i++)
                 {
-                    GameObject unit = _unitsQueue.Dequeue();
-                    unit.SetActive(false);
+                    Unit unit = _unitList[i];
+                    unit.gameObject.SetActive(false);
+                    _unitList.Remove(unit);
                 }
             }
         }
-    }
+    } 
 }

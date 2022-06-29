@@ -7,14 +7,14 @@ namespace CodeBase.Components
 {
     public class ObjectPool : MonoBehaviour
     {
-        [SerializeField] private int amountToPool;
+        [SerializeField] private int _amountToPool;
         private List<GameObject> _pooledObjects;
 
         public void InitPool()
         {
             IUnitFactory unitFactory = ServiceLocator.Container.Single<IUnitFactory>();
             _pooledObjects = new List<GameObject>();
-            for (int i = 0; i < amountToPool; i++)
+            for (int i = 0; i < _amountToPool; i++)
             {
                 GameObject pooledObject = unitFactory.CreateUnit();
                 pooledObject.SetActive(false);
@@ -24,7 +24,7 @@ namespace CodeBase.Components
 
         public GameObject GetPooledObject()
         {
-            for(int i = 0; i < amountToPool; i++)
+            for(int i = 0; i < _amountToPool; i++)
             {
                 if(_pooledObjects[i].activeInHierarchy == false)
                 {
