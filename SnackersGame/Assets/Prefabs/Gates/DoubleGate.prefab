@@ -303,6 +303,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GateLogic (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5272766565227632933, guid: fd5e1eb93cbadf743896d8bde1038eca,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8.673903
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272766565227632933, guid: fd5e1eb93cbadf743896d8bde1038eca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.614
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272766565227632933, guid: fd5e1eb93cbadf743896d8bde1038eca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.99
+      objectReference: {fileID: 0}
     - target: {fileID: 5855199355720719102, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_RootOrder
@@ -310,8 +325,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5855199355720719102, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855199355720719102, guid: fd5e1eb93cbadf743896d8bde1038eca,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.25
+      value: -9.9053
       objectReference: {fileID: 0}
     - target: {fileID: 5855199355720719102, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
@@ -361,22 +381,22 @@ PrefabInstance:
     - target: {fileID: 8446982133111867901, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_margin.x
-      value: 15.41992
+      value: 20.098063
       objectReference: {fileID: 0}
     - target: {fileID: 8446982133111867901, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_margin.z
-      value: -4.6831055
+      value: -9.045158
       objectReference: {fileID: 0}
     - target: {fileID: 9070231789489683637, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_Size.x
-      value: 8.578903
+      value: 8.906357
       objectReference: {fileID: 0}
     - target: {fileID: 9070231789489683637, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_Center.x
-      value: 9.905144
+      value: 14.679932
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd5e1eb93cbadf743896d8bde1038eca, type: 3}
@@ -410,6 +430,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GateLogic
       objectReference: {fileID: 0}
+    - target: {fileID: 5272766565227632933, guid: fd5e1eb93cbadf743896d8bde1038eca,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8.396305
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272766565227632933, guid: fd5e1eb93cbadf743896d8bde1038eca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.2673
+      objectReference: {fileID: 0}
     - target: {fileID: 5855199355720719102, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_RootOrder
@@ -417,8 +447,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5855199355720719102, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855199355720719102, guid: fd5e1eb93cbadf743896d8bde1038eca,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 5855199355720719102, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
@@ -468,22 +503,22 @@ PrefabInstance:
     - target: {fileID: 8446982133111867901, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_margin.x
-      value: 15.784178
+      value: 18.085323
       objectReference: {fileID: 0}
     - target: {fileID: 8446982133111867901, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_margin.z
-      value: -4.3256836
+      value: -6.373947
       objectReference: {fileID: 0}
     - target: {fileID: 9070231789489683637, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_Size.x
-      value: 8.578903
+      value: 6.9099426
       objectReference: {fileID: 0}
     - target: {fileID: 9070231789489683637, guid: fd5e1eb93cbadf743896d8bde1038eca,
         type: 3}
       propertyPath: m_Center.x
-      value: 9.905144
+      value: 9.829282
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd5e1eb93cbadf743896d8bde1038eca, type: 3}

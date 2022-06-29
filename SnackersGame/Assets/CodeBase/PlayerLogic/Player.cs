@@ -37,7 +37,7 @@ namespace CodeBase.Components
         {
             ApplyOperation(MathOperation.Subtraction, 1);
             CheckForUnitsOver();
-            unit.gameObject.SetActive(false);
+            unit.Deactivate();
             _unitList.Remove(unit);
         }
 

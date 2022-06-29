@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Spawn;
@@ -16,10 +17,13 @@ namespace CodeBase.Components.GateLogic
         [SerializeField] private GateType _type;
         [SerializeField] private int _value;
         [SerializeField] private MathOperation _operation;
+        
         private ISpawnService _spawnService;
 
-        private void Awake() 
-            => _spawnService = ServiceLocator.Container.Single<ISpawnService>();
+        private void Awake()
+        {
+            _spawnService = ServiceLocator.Container.Single<ISpawnService>();
+        }
 
         private void OnDisable() 
             => GetComponent<BoxCollider>().enabled = false;

@@ -27,6 +27,10 @@ namespace CodeBase.Components
                 {
                     targetPosition.y -= 100;
                 }
+                else if (transform.position.y > _target.position.y)
+                {
+                    _rigidBody.AddForce(Vector3.down * 3, ForceMode.VelocityChange);
+                }
 
                 Vector3 destination = targetPosition - transform.position;
                 _rigidBody.AddForce(destination,  ForceMode.VelocityChange);
