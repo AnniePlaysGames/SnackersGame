@@ -1,8 +1,9 @@
 using System;
-using CodeBase.Components;
+using CodeBase.CameraLogic;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Spawn;
 using CodeBase.Infrastructure.States.Interfaces;
+using CodeBase.Utilities;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.States

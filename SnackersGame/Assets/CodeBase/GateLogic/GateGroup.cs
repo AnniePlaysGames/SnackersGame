@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CodeBase.Components.GateLogic
+namespace CodeBase.GateLogic
 {
     public class GateGroup : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CodeBase.Components
+namespace CodeBase.Utilities
 {
     public class DontDestroyOnLoad : MonoBehaviour
     {

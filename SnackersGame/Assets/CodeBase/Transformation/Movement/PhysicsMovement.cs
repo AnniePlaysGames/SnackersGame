@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace CodeBase.Components
+namespace CodeBase.Transformation.Movement
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(SurfaceSlider))]

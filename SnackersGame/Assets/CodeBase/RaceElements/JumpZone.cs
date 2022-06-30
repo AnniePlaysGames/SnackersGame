@@ -1,16 +1,18 @@
-using CodeBase.Components;
+using CodeBase.Transformation.Jump;
 using UnityEngine;
 
-
-[RequireComponent(typeof(Collider))]
-public class JumpZone : MonoBehaviour
+namespace CodeBase.RaceElements
 {
-    private void OnTriggerEnter(Collider other)
+    [RequireComponent(typeof(Collider))]
+    public class JumpZone : MonoBehaviour
     {
-        PhysicsJump jump = other.GetComponent<PhysicsJump>();
-        if (jump)
+        private void OnTriggerEnter(Collider other)
         {
-            jump.Jump(transform.forward);
+            PhysicsJump jump = other.GetComponent<PhysicsJump>();
+            if (jump)
+            {
+                jump.Jump(transform.forward);
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
-using CodeBase.Components;
 using CodeBase.Infrastructure.Services.AssetManagment;
 using CodeBase.Infrastructure.Services.Spawn;
+using CodeBase.Transformation.Movement;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.Services.Factories

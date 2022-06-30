@@ -1,9 +1,8 @@
-using System;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Input;
 using UnityEngine;
 
-namespace CodeBase.Components
+namespace CodeBase.Transformation.Movement
 {
     [RequireComponent(typeof(PhysicsMovement))]
     public class Movable : MonoBehaviour

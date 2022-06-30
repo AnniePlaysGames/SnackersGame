@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Spawn;
+using CodeBase.Transformation.Movement;
 using UnityEngine;
 
-namespace CodeBase.Components.GateLogic
+namespace CodeBase.GateLogic
 {
     public class Gate : MonoBehaviour
     {

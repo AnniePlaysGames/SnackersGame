@@ -1,8 +1,8 @@
-using System;
 using System.Collections;
+using CodeBase.Transformation.Movement;
 using UnityEngine;
 
-namespace CodeBase.Components
+namespace CodeBase.Transformation.Jump
 {
     public class PhysicsJump : MonoBehaviour
     {

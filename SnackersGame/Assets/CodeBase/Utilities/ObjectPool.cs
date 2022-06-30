@@ -3,7 +3,7 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Factories;
 using UnityEngine;
 
-namespace CodeBase.Components
+namespace CodeBase.Utilities
 {
     public class ObjectPool : MonoBehaviour
     {

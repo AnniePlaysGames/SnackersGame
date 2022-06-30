@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
-using CodeBase.Components.GateLogic;
+using CodeBase.CameraLogic;
+using CodeBase.GateLogic;
+using CodeBase.Utilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CodeBase.Components
+namespace CodeBase.PlayerLogic
 {
     public class Player : MonoBehaviour
     {

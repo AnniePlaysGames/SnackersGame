@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CodeBase.Components
+namespace CodeBase.Transformation.Movement
 {
     public class SurfaceSlider : MonoBehaviour
     {

@@ -1,9 +1,8 @@
-using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
 
-namespace CodeBase.Components.GateLogic
+namespace CodeBase.GateLogic
 {
     public class GateView : MonoBehaviour
     {

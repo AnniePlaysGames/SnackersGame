@@ -1,7 +1,7 @@
-using System;
+using CodeBase.Transformation.Jump;
 using UnityEngine;
 
-namespace CodeBase.Components
+namespace CodeBase.Transformation.Movement
 {
     [RequireComponent(typeof(Rigidbody))]
     
