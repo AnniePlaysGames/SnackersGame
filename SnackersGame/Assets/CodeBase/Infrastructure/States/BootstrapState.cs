@@ -52,6 +52,7 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IInputService>(new MobileInputService(_uiRoot.GetComponentInChildren<Joystick>()));
             _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
             _services.RegisterSingle<IUnitFactory>(new UnitFactory(_services.Single<IAssetProvider>(), _services.Single<ISpawnService>()));
+            _services.RegisterSingle<ICameraService>(new CameraService());
         }
     }
 }

@@ -18,7 +18,6 @@ namespace CodeBase.PlayerLogic
         public Transform LookPoint { get; private set; }
         public event Action OnUnitsOver;
         public ObjectPool ObjectPool { get; set; }
-        public Transform UnitsMagnetPoint { get; set; }
 
         private void Awake() 
             => LookPoint = GetComponentInChildren<CameraLookPoint>().transform;

@@ -20,7 +20,7 @@ namespace CodeBase.Infrastructure.States
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, serviceLocator, uiRoot, objectPool),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, serviceLocator.Single<ISpawnService>(), objectPool),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, serviceLocator.Single<ISpawnService>(),serviceLocator.Single<ICameraService>(),  objectPool),
                 [typeof(GameLoopState)] = new GameLoopState(serviceLocator.Single<IInputService>()),
             };
         }

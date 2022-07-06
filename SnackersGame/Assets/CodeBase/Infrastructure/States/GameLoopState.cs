@@ -11,10 +11,8 @@ namespace CodeBase.Infrastructure.States
         public GameLoopState(IInputService inputService) 
             => _inputService = inputService;
 
-        public void Enter()
-        {
-            _inputService.EnableInput();
-        }
+        public void Enter() 
+            => _inputService.EnableInput();
 
         public void Exit() 
             => _inputService.DisableInput();
